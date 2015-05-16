@@ -17,7 +17,7 @@ var FacebookLoginManager = NativeModules.FacebookLoginManager;
 var Welcome = React.createClass({
   getInitialState() {
     return {
-      result: 'No User Name'
+      result: ''
     }
   },
 
@@ -26,7 +26,7 @@ var Welcome = React.createClass({
   },
 
   login() {
-    if(this.state.result === 'No User Name' || this.state.result === 'Canceled'){
+    if(this.state.result === '' || this.state.result === 'Canceled'){
       FacebookLoginManager.newSession((error, info) => {
 
         if (error) {
@@ -51,7 +51,7 @@ var Welcome = React.createClass({
   },
 
   logout() {
-    this.setState({result: 'No User Name'});
+    this.setState({result: ''});
   },
 
   redirToPolling() {
@@ -106,7 +106,7 @@ var Welcome = React.createClass({
   },
 
   render() {
-    if (this.state.result !== "Canceled" && this.state.result !== "No User Name"){
+    if (this.state.result !== "Canceled" && this.state.result !== ""){
       return this.renderUserView();
     } else {
       return this.renderLoginView();
